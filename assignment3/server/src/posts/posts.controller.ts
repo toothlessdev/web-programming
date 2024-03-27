@@ -1,8 +1,6 @@
 import {
   Controller,
   Param,
-  ParseIntPipe,
-  UsePipes,
   Get,
   Post,
   Delete,
