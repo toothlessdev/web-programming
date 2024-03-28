@@ -1,7 +1,3 @@
-import { useRouter } from "next/router";
-import { SetStateAction, useCallback, useRef, useState } from "react";
-import { forwardRef } from "react";
-
 // eslint-disable-next-line react/display-name
 export const PerPageController = () => {
   return (
