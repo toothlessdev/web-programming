@@ -4,7 +4,6 @@ import { PostModel } from './model/post.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { ReadPostDto } from './dto/response/read-post.dto';
 
 @Injectable()
 export class PostsService {
@@ -22,10 +21,7 @@ export class PostsService {
   }
 
   public async readPostById(id: number) {
-    // return this.postsRepository.findOne({ where: { id } });
-    return new ReadPostDto(
-      await this.postsRepository.findOne({ where: { id } }),
-    ).from();
+    return this.postsRepository.findOne({ where: { id } });
   }
 
   public async createPost(body: CreatePostDto) {
