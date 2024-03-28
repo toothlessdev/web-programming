@@ -6,6 +6,8 @@ import {
   Delete,
   Patch,
   Body,
+  Query,
+  BadRequestException,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -16,8 +18,16 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
-  public async readAllPosts() {
-    return this.postsService.readAllPosts();
+  public async readPosts(
+    @Query('page') page: string,
+    @Query('per_page') perPage: string,
+  ) {
+    if (!page || !perPage)
+      throw new BadRequestException(
+        'page Param 과 perPage Param 은 필수입니다',
+      );
+
+    return this.postsService.readPosts(parseInt(page), parseInt(perPage));
   }
 
   @Get(':id')
