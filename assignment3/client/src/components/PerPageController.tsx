@@ -4,18 +4,9 @@ import { forwardRef } from "react";
 
 // eslint-disable-next-line react/display-name
 export const PerPageController = () => {
-  const router = useRouter();
-  const perPageRef = useRef<HTMLSelectElement>(null);
-  const [perPage, setPerPage] = useState<number>(10);
-
-  const onChange = useCallback(() => {
-    setPerPage(perPageRef.current?.value);
-    router.push(`/?page=${1}&per_page=${perPage}`);
-  }, []);
-
   return (
     <>
-      <select name="perpage" id="" onChange={onChange} ref={perPageRef}>
+      <select name="perpage" id="">
         <option value="10" selected>
           10 개씩 보기
         </option>
