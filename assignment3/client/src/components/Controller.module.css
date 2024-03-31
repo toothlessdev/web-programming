@@ -23,7 +23,7 @@
     margin: 0px 10px;
 }
 
-.controller-page > .page {
+.page {
     height: 30px;
     width: 30px;
 
@@ -37,5 +37,22 @@
 }
 
 .page:hover {
+    cursor: pointer;
+}
+
+.new-post-btn {
+    display: block;
+    width: 120px;
+    height: 30px;
+
+    margin: 10px 5px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+
+    background-color: #000;
+    color: #fff;
+}
+
+.new-post-btn:hover {
     cursor: pointer;
 }

@@ -20,7 +20,7 @@ export const Controller = forwardRef<HTMLSelectElement, IController>((props, ref
                 ref={ref}
                 defaultValue="10"
                 onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-                    router.replace(`${router.pathname}?page=${searchParams.get("page")}&per_page=${e.target.value}`);
+                    router.replace(`${router.pathname}?page=${searchParams.get("page") ?? "1"}&per_page=${e.target.value}`);
                 }}>
                 <option value="10">10개씩</option>
                 <option value="20">20개씩</option>
@@ -34,13 +34,21 @@ export const Controller = forwardRef<HTMLSelectElement, IController>((props, ref
                             key={k + 1}
                             className={styles["page"]}
                             onClick={() => {
-                                router.replace(`${router.pathname}?page=${k + 1}&per_page=${searchParams.get("per_page")}`);
+                                router.replace(`${router.pathname}?page=${k + 1}&per_page=${searchParams.get("per_page") ?? "10"}`);
                             }}>
                             {k + 1}
                         </div>
                     );
                 })}
             </div>
+
+            <button
+                className={styles["new-post-btn"]}
+                onClick={() => {
+                    router.push("/posts/new");
+                }}>
+                글쓰기
+            </button>
         </div>
     );
 });
