@@ -4,7 +4,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 
-export default function EditPostPage(props: PageProps) {
+export default function EditPostPage() {
     const router = useRouter();
 
     const titleRef = useRef<HTMLInputElement>(null);

@@ -52,7 +52,7 @@ export default function PostDetailPage(props: PageProps) {
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (context: GetServerSidePropsContext) => {
     const { id } = context.query;
-    const { title, author, content, createdAt } = await postService.readPostById(id);
+    const { title, author, content, createdAt } = await postService.readPostById(Number(id));
 
     return {
         props: { title, author, content, createdAt },
