@@ -16,7 +16,7 @@ export class PostsService {
     const posts = await this.postsRepository.find({
       take: perPage,
       skip: perPage * (page - 1),
-      select: ['title', 'author', 'createdAt'],
+      select: ['id', 'title', 'author', 'createdAt'],
     });
 
     return { posts, page, perPage };
@@ -44,6 +44,6 @@ export class PostsService {
     const post = await this.postsRepository.findOne({ where: { id } });
     if (!post) throw new NotFoundException();
 
-    return this.postsRepository.delete(post);
+    return this.postsRepository.delete(id);
   }
 }
