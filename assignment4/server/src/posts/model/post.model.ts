@@ -19,6 +19,9 @@ export class PostModel {
   @Column()
   content: string;
 
+  @Column({ nullable: true })
+  image?: string;
+
   @CreateDateColumn()
   createdAt: Date;
 }
