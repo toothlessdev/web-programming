@@ -1,0 +1,25 @@
+.main {
+    width: min(100%, 500px);
+
+    margin: 20px auto;
+}
+
+.input-item {
+    margin: 10px 0px;
+}
+
+.input-item > input {
+    margin: 5px 0px;
+}
+
+.input-item > textarea {
+    display: block;
+
+    height: 200px;
+    width: 100%;
+
+    border: 1px solid #fff;
+    border-radius: 10px;
+
+    background-color: #000;
+}
