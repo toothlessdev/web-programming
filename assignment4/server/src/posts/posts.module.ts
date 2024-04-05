@@ -6,7 +6,7 @@ import { PostModel } from './model/post.model';
 import { MulterModule } from '@nestjs/platform-express';
 import * as path from 'path';
 import * as multer from 'multer';
-import uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 const multerModule = MulterModule.register({
   limits: {
@@ -29,13 +29,13 @@ const multerModule = MulterModule.register({
       callback(null, path.join(process.cwd(), 'public', 'images'));
     },
     filename: (request, file, callback) => {
-      callback(null, `${uuid.v4()}${path.extname(file.originalname)}`);
+      callback(null, `${uuid()}${path.extname(file.originalname)}`);
     },
   }),
 });
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PostModel])],
+  imports: [TypeOrmModule.forFeature([PostModel]), multerModule],
   controllers: [PostsController],
   providers: [PostsService],
 })

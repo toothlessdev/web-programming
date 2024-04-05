@@ -8,10 +8,13 @@ import {
   Body,
   Query,
   BadRequestException,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('posts')
 export class PostsController {
@@ -36,8 +39,13 @@ export class PostsController {
   }
 
   @Post()
-  public async createPost(@Body() body: CreatePostDto) {
-    return this.postsService.createPost(body);
+  @UseInterceptors(FileInterceptor('image')) // image 키값에 파일 업로드
+  public async createPost(
+    @Body() body: CreatePostDto,
+    @UploadedFile() file?: Express.Multer.File,
+  ) {
+    console.log(file);
+    return this.postsService.createPost(body, file?.filename);
   }
 
   @Patch(':id')

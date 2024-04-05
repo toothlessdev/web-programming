@@ -26,8 +26,11 @@ export class PostsService {
     return this.postsRepository.findOne({ where: { id } });
   }
 
-  public async createPost(body: CreatePostDto) {
-    const newPost = await this.postsRepository.create(body);
+  public async createPost(body: CreatePostDto, image: string) {
+    const newPost = await this.postsRepository.create({
+      ...body,
+      image,
+    });
     return this.postsRepository.save(newPost);
   }
 
