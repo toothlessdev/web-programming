@@ -23,9 +23,6 @@ export default function NewPostPage() {
 
         fetch(API_BASE_URL + "/posts", {
             method: "POST",
-            // headers: {
-            //     "Content-Type": "multipart/form-data",
-            // },
             body: formData,
         })
             .then((res) => {
