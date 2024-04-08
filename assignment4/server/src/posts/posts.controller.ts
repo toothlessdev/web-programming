@@ -10,6 +10,7 @@ import {
   BadRequestException,
   UseInterceptors,
   UploadedFile,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
@@ -21,6 +22,7 @@ export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Get()
+  @UseInterceptors(ClassSerializerInterceptor)
   public async readPosts(
     @Query('page') page: string,
     @Query('per_page') perPage: string,
@@ -34,6 +36,7 @@ export class PostsController {
   }
 
   @Get(':id')
+  @UseInterceptors(ClassSerializerInterceptor)
   public async readPostById(@Param('id') id: string) {
     return this.postsService.readPostById(Number(id));
   }
@@ -44,7 +47,6 @@ export class PostsController {
     @Body() body: CreatePostDto,
     @UploadedFile() file?: Express.Multer.File,
   ) {
-    console.log(file);
     return this.postsService.createPost(body, file?.filename);
   }
 

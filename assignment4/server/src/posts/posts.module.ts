@@ -14,6 +14,8 @@ const multerModule = MulterModule.register({
   },
   fileFilter: (request, file, callback) => {
     const extension = path.extname(file.originalname);
+    console.log('file : ', file);
+    console.log('ext : ', extension);
     if (extension !== '.jpg' && extension !== '.jpeg' && extension !== '.png') {
       return callback(
         new BadRequestException(

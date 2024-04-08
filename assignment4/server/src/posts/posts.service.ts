@@ -16,7 +16,7 @@ export class PostsService {
     const posts = await this.postsRepository.find({
       take: perPage,
       skip: perPage * (page - 1),
-      select: ['id', 'title', 'author', 'createdAt'],
+      select: ['id', 'title', 'author', 'createdAt', 'image'],
     });
 
     return { posts, page, perPage };
