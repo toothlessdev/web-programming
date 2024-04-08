@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/services/api";
 import { postService } from "@/services/post.service";
 import styles from "@/styles/NewPostPage.module.css";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
@@ -8,6 +9,7 @@ export interface PageProps {
     author: string;
     content: string;
     createdAt: string;
+    image?: string;
 }
 
 export default function PostDetailPage(props: PageProps) {
@@ -46,15 +48,17 @@ export default function PostDetailPage(props: PageProps) {
                 <button onClick={onEditBtnClicked}>수정하기</button>
                 <button onClick={onDeleteBtnClicked}>삭제하기</button>
             </div>
+
+            <div className={styles["img-container"]}>{props.image && <img src={API_BASE_URL + props.image} alt="" />}</div>
         </main>
     );
 }
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (context: GetServerSidePropsContext) => {
     const { id } = context.query;
-    const { title, author, content, createdAt } = await postService.readPostById(Number(id));
+    const { title, author, content, createdAt, image } = await postService.readPostById(Number(id));
 
     return {
-        props: { title, author, content, createdAt },
+        props: { title, author, content, createdAt, image },
     };
 };
