@@ -4,6 +4,7 @@ export interface Post {
     author: string;
     content: string;
     createdAt: string;
+    image?: string;
 }
 
 export interface IReadPostsResponseBody {

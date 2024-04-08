@@ -23,3 +23,7 @@
 
     background-color: #000;
 }
+
+.img-container > img {
+    width: 100%;
+}
