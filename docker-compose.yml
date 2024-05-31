@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+    assignment1:
+        build:
+            context: ./assignment1
+            dockerfile: Dockerfile
+        ports:
+            - "8081:80"
+        volumes:
+            - ./assignment1:/usr/share/nginx/html
+
+    assignment2:
+        build:
+            context: ./assignment2
+            dockerfile: Dockerfile
+        ports:
+            - "3001:3000"
+        environment:
+            - NODE_ENV=production
+
+    assignment3_client:
+        build:
+            context: ./assignment3/client
+            dockerfile: Dockerfile
+        ports:
+            - "3002:3000"
+        environment:
+            - NODE_ENV=production
+
+    assignment3_server:
+        build:
+            context: ./assignment3/server
+            dockerfile: Dockerfile
+        ports:
+            - "8082:8080"
+        environment:
+            - NODE_ENV=production
+
+    assignment4_client:
+        build:
+            context: ./assignment4/client
+            dockerfile: Dockerfile
+        ports:
+            - "3003:3000"
+        environment:
+            - NODE_ENV=production
+
+    assignment4_server:
+        build:
+            context: ./assignment4/server
+            dockerfile: Dockerfile
+        ports:
+            - "8083:8080"
+        environment:
+            - NODE_ENV=production
